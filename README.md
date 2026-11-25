@@ -74,7 +74,7 @@ Tir : 150 utilisateurs, montee de 10/s, 120 s -> ~11 200 requetes.
 - **`/explore` et `/explore?page=n` ralentissent quand le nombre de posts augmente** (page la plus lourde : ~30 Ko,
   p95 a 55 ms alors que les pages simples sont sous 10 ms). Pour chaque post affiche le template va chercher
   l'auteur (requetes N+1) et l'avatar. Pistes : charger les auteurs avec une jointure (`selectinload`),
-  ajouter un index sur `post.timestamp`, mettre en cache.
+  paginer moins de posts par page, mettre en cache.
 - **`POST /index` (publier un post)** : la detection de langue (`langdetect`) est faite a chaque post, ce qui
   rajoute du temps de traitement. On pourrait la faire en tache de fond.
 - **`/api/users`** : p95 a 57 ms, la liste est paginee mais chaque utilisateur est serialise avec des compteurs
